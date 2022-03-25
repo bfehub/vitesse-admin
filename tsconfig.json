@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -11,8 +12,8 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "paths": {
-      "@/*": ["./src/*"],
-      "#/*": ["./types/*"]
+      "@/*": ["src/*"],
+      "#/*": ["types/*"]
     }
   },
   "include": [
