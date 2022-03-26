@@ -1,5 +1,4 @@
 import { CacheTypeEnum } from '@/enums/cacheEnum'
-import { PermissionModeEnum } from '@/enums/appEnum'
 
 /**
  * 项目环境变量
@@ -31,10 +30,6 @@ export interface GlobEnvConfig {
  * 项目配置
  */
 export interface ProjectConfig {
-  /**
-   * 权限模式，默认前端角色权限模式
-   */
-  permissionMode: PermissionModeEnum
   /**
    * 权限缓存存放类型，默认 localStorage
    */

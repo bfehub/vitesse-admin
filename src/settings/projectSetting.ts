@@ -1,12 +1,7 @@
 import type { ProjectConfig } from '#/config'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
-import { PermissionModeEnum } from '@/enums/appEnum'
 
 const setting: ProjectConfig = {
-  /**
-   * 权限模式，默认前端角色权限模式
-   */
-  permissionMode: PermissionModeEnum.ROLE,
   /**
    * 权限缓存存放类型，默认 localStorage
    */

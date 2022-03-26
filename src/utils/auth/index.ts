@@ -1,7 +1,7 @@
 /**
  * @description 权限相关的存储，默认加密存储
  */
-import type { UserInfo } from '#/store'
+import type { UserInfo } from '#/common'
 import type { ProjectConfig } from '#/config'
 import { createLocalStorage, createSessionStorage } from '@/utils/cache'
 import projectSetting from '@/settings/projectSetting'
