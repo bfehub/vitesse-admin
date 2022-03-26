@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 import { store } from '@/store'
 import { router } from '@/router'
 import { RoleEnum } from '@/enums/roleEnum'
+import { PageEnum } from '@/enums/pageEnum'
 import { TOKEN_KEY, USER_INFO_KEY, USER_ROLE_KEY } from '@/enums/cacheEnum'
 import { getAuthCache, setAuthCache } from '@/utils/auth'
 import { loginApi, getUserInfo, doLogout } from '@/api/sys/user'
@@ -75,7 +76,7 @@ export const useUserStore = defineStore({
         this.setRoleList(userInfo.roles.map((item) => item.value) as RoleEnum[])
 
         // 3、登录成功后默认访问哪个页面
-        router.replace(userInfo.homePath)
+        router.replace(userInfo.homePath || PageEnum.BASE_HOME)
 
         return Promise.resolve(userInfo)
       } catch (error) {
@@ -86,7 +87,7 @@ export const useUserStore = defineStore({
     /**
      * @description 退出登录
      */
-    async logout(go = '/login') {
+    async logout(go?: string) {
       try {
         await doLogout()
       } catch {
@@ -96,7 +97,7 @@ export const useUserStore = defineStore({
       this.setToken(null)
       this.setUserInfo(null)
       this.setSessionTimeout(false)
-      router.push(go)
+      router.push(go || PageEnum.BASE_LOGIN)
     },
   },
 })

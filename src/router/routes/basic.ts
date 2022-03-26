@@ -1,5 +1,4 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { LAYOUT } from '@/router/constant'
 
 /**
  * @description root page
@@ -10,6 +9,7 @@ export const PAGE_ROOT_ROUTE: RouteRecordRaw = {
   redirect: '/mine',
   meta: {
     title: 'Root',
+    ignoreAuth: true,
   },
 }
 
@@ -22,6 +22,7 @@ export const PAGE_LOGIN_ROUTE: RouteRecordRaw = {
   component: () => import('@/views/sys/login/index.vue'),
   meta: {
     title: '登录',
+    ignoreAuth: true,
   },
 }
 
@@ -31,18 +32,9 @@ export const PAGE_LOGIN_ROUTE: RouteRecordRaw = {
 export const PAGE_NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: '/:path(.*)*',
   name: 'NotFound',
-  component: LAYOUT,
+  component: () => import('@/views/sys/404/index.vue'),
   meta: {
     title: '未找到页面',
+    ignoreAuth: true,
   },
-  children: [
-    {
-      path: '/:path(.*)*',
-      name: 'NotFound',
-      component: () => import('@/views/sys/404/index.vue'),
-      meta: {
-        title: '未找到页面',
-      },
-    },
-  ],
 }

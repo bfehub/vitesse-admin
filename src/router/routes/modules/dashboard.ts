@@ -18,6 +18,7 @@ const dashboard: RouteRecordRaw = {
       component: () => import('@/views/dashboard/analysis/index.vue'),
       meta: {
         title: '分析页',
+        roles: [RoleEnum.SUPER],
       },
     },
     {
@@ -26,6 +27,7 @@ const dashboard: RouteRecordRaw = {
       component: () => import('@/views/dashboard/workbench/index.vue'),
       meta: {
         title: '工作台',
+        roles: [RoleEnum.SUPER],
       },
     },
   ],
