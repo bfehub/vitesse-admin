@@ -5,6 +5,7 @@ import type { UserInfo } from '#/common'
 import type { ProjectConfig } from '#/config'
 import { createLocalStorage, createSessionStorage } from '@/utils/cache'
 import projectSetting from '@/settings/projectSetting'
+import { RoleEnum } from '@/enums/roleEnum'
 import {
   cacheCipher,
   enableStorageEncryption,
@@ -19,9 +20,9 @@ import {
 } from '@/enums/cacheEnum'
 
 interface BasicStore {
-  [TOKEN_KEY]: string | number | null
+  [TOKEN_KEY]: string
   [USER_INFO_KEY]: UserInfo
-  [USER_ROLE_KEY]: string[]
+  [USER_ROLE_KEY]: RoleEnum[]
   [PROJECT_CONFIG_KEY]: ProjectConfig
 }
 
@@ -45,11 +46,14 @@ export function getToken() {
   return getAuthCache(TOKEN_KEY)
 }
 
-export function getAuthCache<Key extends keyof BasicStore>(key: Key): Nullable<BasicStore[Key]> {
+export function getAuthCache<Key extends keyof BasicStore>(key: Key): BasicStore[Key] {
   return isLocal ? ls.get(key) : ss.get(key)
 }
 
-export function setAuthCache<Key extends keyof BasicStore>(key: Key, value: BasicStore[Key]) {
+export function setAuthCache<Key extends keyof BasicStore>(
+  key: Key,
+  value: Nullable<BasicStore[Key]>
+) {
   return isLocal ? ls.set(key, value) : ss.set(key, value)
 }
 

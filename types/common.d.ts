@@ -22,15 +22,23 @@ export interface UserInfo {
    */
   realName: string
   /**
+   * 默认访问路径
+   */
+  homePath: string
+  /**
    * 用户头像
    */
   avatar: string
   /**
    * 用户描述
    */
-  desc?: string
+  desc: string
   /**
-   * 用户权限
+   * 用户Token
+   */
+  token: string
+  /**
+   * 角色权限
    */
   roles: RoleInfo[]
 }

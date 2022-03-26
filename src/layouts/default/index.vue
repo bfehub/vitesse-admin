@@ -1,9 +1,13 @@
 <template>
-  <div class="layout">
+  <div class="h-full flex flex-col">
     <LayoutHeader />
-    <LayoutMenu />
-    <LayoutContent />
-    <LayoutFooter />
+    <div class="flex flex-1">
+      <LayoutMenu />
+      <div class="flex flex-col flex-1">
+        <LayoutContent />
+        <LayoutFooter />
+      </div>
+    </div>
   </div>
 </template>
 

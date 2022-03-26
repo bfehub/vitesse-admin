@@ -1,6 +1,6 @@
 import 'virtual:windi-base.css'
 import 'virtual:windi-components.css'
-import '@/design/index.scss'
+import '@/styles/index.scss'
 import 'virtual:windi-utilities.css'
 import 'virtual:svg-icons-register'
 

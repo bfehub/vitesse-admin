@@ -27,7 +27,7 @@ export function createFakeUserList() {
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=339449197&s=640',
       desc: 'tester',
       token: 'fakeToken2',
-      homePath: '/dashboard/workbench',
+      homePath: '/mine/data',
       roles: [
         {
           roleName: 'Tester',
@@ -36,11 +36,6 @@ export function createFakeUserList() {
       ],
     },
   ]
-}
-
-const fakeCodeList: Record<string, string[]> = {
-  '1': ['1000', '3000', '5000'],
-  '2': ['2000', '4000', '6000'],
 }
 
 export default [
@@ -69,21 +64,6 @@ export default [
         return resultError('The corresponding user information was not obtained!')
       }
       return resultSuccess(checkUser)
-    },
-  },
-  {
-    url: '/basic-api/getPermCode',
-    method: 'get',
-    response: (request: requestParams) => {
-      const token = getRequestToken(request)
-      if (!token) return resultError('Invalid token')
-      const checkUser = createFakeUserList().find((item) => item.token === token)
-      if (!checkUser) {
-        return resultError('Invalid token!')
-      }
-      const codeList = fakeCodeList[checkUser.userId]
-
-      return resultSuccess(codeList)
     },
   },
   {

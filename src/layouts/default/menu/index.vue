@@ -1,7 +1,14 @@
 <template>
   <div class="menu">
     <ul>
-      <li v-for="item of menus" :key="item.name">{{ item.name }}</li>
+      <li v-for="item of menus" :key="item.name" class="bg-blue-100">
+        <router-link :to="item.path">{{ item.name }}</router-link>
+        <ul>
+          <li v-for="child of item.children" :key="child.name" class="bg-red-200">
+            <router-link :to="child.path">{{ child.name }}</router-link>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </template>
@@ -15,3 +22,19 @@ onMounted(async () => {
   menus.value = await getMenus()
 })
 </script>
+
+<style lang="scss" scoped>
+.menu {
+  width: 120px;
+
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+
+    a {
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+}
+</style>

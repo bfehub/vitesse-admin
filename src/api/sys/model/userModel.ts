@@ -11,6 +11,4 @@ export interface LoginParams {
 /**
  * @description: Get user information return value
  */
-export interface UserInfoModel extends UserInfo {
-  __: unknown
-}
+export type UserInfoModel = UserInfo

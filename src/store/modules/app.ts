@@ -4,14 +4,14 @@ import { store } from '@/store'
 import { ThemeEnum } from '@/enums/appEnum'
 
 interface AppState {
-  darkMode?: ThemeEnum
-  projectConfig: ProjectConfig | null
+  darkMode: Nullable<ThemeEnum>
+  projectConfig: Nullable<ProjectConfig>
 }
 
 export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => ({
-    darkMode: undefined,
+    darkMode: null,
     projectConfig: null,
   }),
 })
