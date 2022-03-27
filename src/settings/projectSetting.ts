@@ -1,4 +1,5 @@
 import type { ProjectConfig } from '#/config'
+import { ThemeEnum } from '@/enums/appEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 const setting: ProjectConfig = {
@@ -13,7 +14,11 @@ const setting: ProjectConfig = {
   /**
    * 色弱模式
    */
-  colorWeak: false,
+  weakMode: false,
+  /**
+   * 主题模式
+   */
+  themeMode: ThemeEnum.LIGHT,
   /**
    * 是否使用全局错误捕获
    */

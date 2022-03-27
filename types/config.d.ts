@@ -1,7 +1,8 @@
+import { ThemeEnum } from '@/enums/appEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
 /**
- * 项目环境变量
+ * @description 项目环境变量
  */
 export interface GlobEnvConfig {
   /**
@@ -27,7 +28,7 @@ export interface GlobEnvConfig {
 }
 
 /**
- * 项目配置
+ * @description 项目全局配置
  */
 export interface ProjectConfig {
   /**
@@ -41,7 +42,11 @@ export interface ProjectConfig {
   /**
    * 色弱模式
    */
-  colorWeak: boolean
+  weakMode: boolean
+  /**
+   * 主题模式
+   */
+  themeMode: ThemeEnum
   /**
    * 是否使用全局错误捕获
    */
