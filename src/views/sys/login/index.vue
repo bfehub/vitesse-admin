@@ -14,7 +14,7 @@ const loading = ref(false)
 const userStore = useUserStore()
 
 const formData = reactive({
-  account: 'vben',
+  account: 'admin',
   password: '123456',
 })
 

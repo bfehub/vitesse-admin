@@ -9,6 +9,7 @@ import { configSvgIconsPlugin } from './svgSprite'
 import { configCompressPlugin } from './compress'
 import { configMockPlugin } from './mock'
 import { configPwaPlugin } from './pwa'
+import { configHtmlPlugin } from './html'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
@@ -37,6 +38,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // vite-plugin-svg-icons
   vitePlugins.push(configSvgIconsPlugin(isBuild))
+
+  // vite-plugin-html
+  vitePlugins.push(configHtmlPlugin(viteEnv, isBuild))
 
   // vite-plugin-mock
   VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))
