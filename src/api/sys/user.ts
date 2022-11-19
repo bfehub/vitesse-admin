@@ -1,12 +1,6 @@
 import { defHttp } from '@/utils/http/axios'
 import { LoginParams, UserInfoModel } from './model/userModel'
 
-enum Api {
-  Login = '/login',
-  Logout = '/logout',
-  GetUserInfo = '/getUserInfo',
-}
-
 /**
  * @author your name
  * @date 2022-03-24 21:39:20
@@ -14,7 +8,7 @@ enum Api {
  */
 export function loginApi(params: LoginParams) {
   return defHttp.post<UserInfoModel>({
-    url: Api.Login,
+    url: '/login',
     params,
   })
 }
@@ -26,7 +20,7 @@ export function loginApi(params: LoginParams) {
  */
 export function getUserInfo() {
   return defHttp.get<UserInfoModel>({
-    url: Api.GetUserInfo,
+    url: '/getUserInfo',
   })
 }
 
@@ -37,6 +31,6 @@ export function getUserInfo() {
  */
 export function doLogout() {
   return defHttp.get({
-    url: Api.Logout,
+    url: '/logout',
   })
 }

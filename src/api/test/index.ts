@@ -1,19 +1,14 @@
 import { defHttp } from '@/utils/http/axios'
 
-enum Api {
-  GetSuccess = '/success',
-  GetCancel = '/cancel',
-  GetError = '/error',
-  GetError404 = '/error/404',
-}
-
 /**
  * @author your name
  * @date 2022-03-24 21:39:20
  * @description success
  */
 export function getSuccess() {
-  return defHttp.get<any>({ url: Api.GetSuccess })
+  return defHttp.get<any>({
+    url: '/success',
+  })
 }
 
 /**
@@ -24,7 +19,7 @@ export function getSuccess() {
 export function getCancel() {
   return defHttp.get<any>(
     {
-      url: Api.GetCancel,
+      url: '/cancel',
     },
     {
       isCancelToken: true,
@@ -38,7 +33,9 @@ export function getCancel() {
  * @description error
  */
 export function getError() {
-  return defHttp.get<any>({ url: Api.GetError })
+  return defHttp.get<any>({
+    url: '/error',
+  })
 }
 
 /**
@@ -47,5 +44,7 @@ export function getError() {
  * @description error
  */
 export function getError404() {
-  return defHttp.get<any>({ url: Api.GetError404 })
+  return defHttp.get<any>({
+    url: '/error/404',
+  })
 }

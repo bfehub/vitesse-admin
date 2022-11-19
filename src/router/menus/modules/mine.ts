@@ -1,6 +1,6 @@
 import type { MenuItem } from '#/common'
 
-const basic: MenuItem[] = [
+const mine: MenuItem[] = [
   {
     name: '我的',
     path: '/mine',
@@ -19,4 +19,4 @@ const basic: MenuItem[] = [
   },
 ]
 
-export default basic
+export default mine

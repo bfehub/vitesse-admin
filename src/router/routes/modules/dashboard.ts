@@ -9,7 +9,7 @@ const dashboard: RouteRecordRaw = {
   redirect: '/dashboard/analysis',
   meta: {
     title: '总览',
-    roles: [RoleEnum.SUPER],
+    roles: [RoleEnum.ADMIN],
   },
   children: [
     {
@@ -18,7 +18,7 @@ const dashboard: RouteRecordRaw = {
       component: () => import('@/views/dashboard/analysis/index.vue'),
       meta: {
         title: '分析页',
-        roles: [RoleEnum.SUPER],
+        roles: [RoleEnum.ADMIN],
       },
     },
     {
@@ -27,7 +27,7 @@ const dashboard: RouteRecordRaw = {
       component: () => import('@/views/dashboard/workbench/index.vue'),
       meta: {
         title: '工作台',
-        roles: [RoleEnum.SUPER],
+        roles: [RoleEnum.ADMIN],
       },
     },
   ],

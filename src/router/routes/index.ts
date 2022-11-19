@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { PAGE_ROOT_ROUTE, PAGE_LOGIN_ROUTE, PAGE_NOT_FOUND_ROUTE } from './basic'
 
 // 自动加载目录下的路由模块
-const modules = import.meta.globEager('./modules/**/*.ts')
+const modules = import.meta.glob<any>('./modules/**/*.ts', { eager: true })
 const routeModuleList: RouteRecordRaw[] = []
 
 // 读取到模块内容合并一个集合中

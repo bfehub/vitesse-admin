@@ -9,31 +9,33 @@ export function createFakeUserList() {
       realName: 'Admin',
       password: '123456',
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
-      desc: 'manager',
+      desc: 'this is admin',
       token: 'fakeToken1',
       homePath: '/dashboard/analysis',
       roles: [
         {
-          roleName: 'Super Admin',
-          value: 'super',
+          name: 'Admin',
+          value: 'admin',
         },
       ],
+      permissions: ['10001', '10002'],
     },
     {
       userId: '2',
       username: 'test',
-      realName: 'test user',
+      realName: 'Test',
       password: '123456',
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=339449197&s=640',
-      desc: 'tester',
+      desc: 'this is test',
       token: 'fakeToken2',
       homePath: '/mine/data',
       roles: [
         {
-          roleName: 'Tester',
+          name: 'Test',
           value: 'test',
         },
       ],
+      permissions: ['20001', '20002'],
     },
   ]
 }
