@@ -1,31 +1,36 @@
-/**
- * 全局的权限指令，用于对组件权限进行细粒度控制
- * @example v-auth="RoleEnum.TEST"
- * @example v-auth="[RoleEnum.TEST]"
- */
-import type { App, Directive, DirectiveBinding } from 'vue'
+import type { App, DirectiveBinding } from 'vue'
 import { usePermission } from '@/hooks/usePermission'
 
-function isAuth(el: Element, binding: any) {
-  const { hasPermission } = usePermission()
-
-  const value = binding.value
-  if (!value) return
-  if (!hasPermission(value)) {
-    el.parentNode?.removeChild(el) // 移除真实的 DOM 元素
-  }
+/**
+ * 角色权限判断
+ * @example v-role="admin"
+ * @example v-role="['admin', 'test']"
+ */
+export function setupRoleDirective(app: App) {
+  app.directive('role', {
+    mounted(el: Element, binding: DirectiveBinding<any>) {
+      const { hasRole } = usePermission()
+      if (!binding.value) return
+      if (!hasRole(binding.value)) {
+        el.parentNode?.removeChild(el)
+      }
+    },
+  })
 }
 
-const mounted = (el: Element, binding: DirectiveBinding<any>) => {
-  isAuth(el, binding)
-}
-
-const authDirective: Directive = {
-  mounted,
-}
-
+/**
+ * 细分权限判断
+ * @example v-permission="10001"
+ * @example v-permission="[10001, 10002]"
+ */
 export function setupPermissionDirective(app: App) {
-  app.directive('auth', authDirective)
+  app.directive('permission', {
+    mounted(el: Element, binding: DirectiveBinding<any>) {
+      const { hasPermission } = usePermission()
+      if (!binding.value) return
+      if (!hasPermission(binding.value)) {
+        el.parentNode?.removeChild(el)
+      }
+    },
+  })
 }
-
-export default authDirective

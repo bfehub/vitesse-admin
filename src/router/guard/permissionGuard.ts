@@ -5,7 +5,8 @@ import { PageEnum } from '@/enums/pageEnum'
 
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreWithOut()
-  const { hasPermission } = usePermission()
+  const { hasRole } = usePermission()
+
   router.beforeEach(async (to, from, next) => {
     // 在路由配置了忽略权限
     if (to.meta.ignoreAuth) {
@@ -26,7 +27,7 @@ export function createPermissionGuard(router: Router) {
     }
 
     // 检测是否有权限访问
-    if (!hasPermission(to.meta.roles)) {
+    if (!hasRole(to.meta.roles)) {
       const status = window.confirm('无权限访问，切换账号?')
       if (status) {
         next({

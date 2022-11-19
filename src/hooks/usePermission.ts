@@ -5,25 +5,39 @@ import { isArray } from '@/utils/is'
 
 /**
  * @description 与用户权限相关的操作
- * @returns {boolean}
  */
 export function usePermission() {
   const userStore = useUserStore()
 
   /**
-   * @description 确定是否有权限
+   * @description 角色权限判断
    */
-  function hasPermission(value?: RoleEnum | RoleEnum[] | string | string[], def = true): boolean {
+  function hasRole(value?: string | string[], def = true): boolean {
     if (!value) {
       return def
     }
 
     if (!isArray(value)) {
-      return userStore.getRoleList.includes(value as RoleEnum)
+      return userStore.getRoles.includes(value as RoleEnum)
     }
 
-    return (intersection(value, userStore.getRoleList) as RoleEnum[]).length > 0
+    return intersection(value, userStore.getRoles).length > 0
   }
 
-  return { hasPermission }
+  /**
+   * @description 细分权限判断
+   */
+  function hasPermission(value?: string | string[], def = true): boolean {
+    if (!value) {
+      return def
+    }
+
+    if (!isArray(value)) {
+      return userStore.getPermissions.includes(value as RoleEnum)
+    }
+
+    return intersection(value, userStore.getPermissions).length > 0
+  }
+
+  return { hasRole, hasPermission }
 }

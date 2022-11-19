@@ -5,24 +5,16 @@ import type { UserInfo } from '#/common'
 import type { ProjectConfig } from '#/config'
 import { createLocalStorage, createSessionStorage } from '@/utils/cache'
 import projectSetting from '@/settings/projectSetting'
-import { RoleEnum } from '@/enums/roleEnum'
 import {
   cacheCipher,
   enableStorageEncryption,
   DEFAULT_CACHE_TIME,
 } from '@/settings/encryptionSetting'
-import {
-  TOKEN_KEY,
-  USER_INFO_KEY,
-  USER_ROLE_KEY,
-  PROJECT_CONFIG_KEY,
-  CacheTypeEnum,
-} from '@/enums/cacheEnum'
+import { TOKEN_KEY, USER_INFO_KEY, PROJECT_CONFIG_KEY, CacheTypeEnum } from '@/enums/cacheEnum'
 
 interface BasicStore {
   [TOKEN_KEY]: string
   [USER_INFO_KEY]: UserInfo
-  [USER_ROLE_KEY]: RoleEnum[]
   [PROJECT_CONFIG_KEY]: ProjectConfig
 }
 

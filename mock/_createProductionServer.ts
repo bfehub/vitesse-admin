@@ -1,7 +1,7 @@
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
 
 // 读取所有的模块获取配置
-const modules = import.meta.globEager('./**/*.ts')
+const modules = import.meta.glob<any>('./**/*.ts', { eager: true })
 const mockModules: any[] = []
 Object.keys(modules).forEach((key) => {
   if (key.includes('/_')) {

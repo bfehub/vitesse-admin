@@ -22,7 +22,7 @@ export function createProxy(list: ProxyList = []) {
 
     // https://github.com/http-party/node-http-proxy#options
     ret[prefix] = {
-      target: target,
+      target,
       changeOrigin: true,
       ws: true,
       rewrite: (path) => path.replace(new RegExp(`^${prefix}`), ''),

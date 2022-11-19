@@ -4,7 +4,7 @@ import { RoleEnum } from '@/enums/roleEnum'
  * @description 用户基本信息
  */
 export interface RoleInfo {
-  roleName: string
+  name: string
   value: string
 }
 
@@ -41,6 +41,10 @@ export interface UserInfo {
    * 角色权限
    */
   roles: RoleInfo[]
+  /**
+   * 细分权限
+   */
+  permissions: string[]
 }
 
 /**

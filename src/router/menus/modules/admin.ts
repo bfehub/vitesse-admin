@@ -1,13 +1,13 @@
 import type { MenuItem } from '#/common'
 import { RoleEnum } from '@/enums/roleEnum'
 
-const supers: MenuItem[] = [
+const admin: MenuItem[] = [
   {
     name: '总览',
     path: '/dashboard',
     icon: 'arrow-left',
     orderNo: 10,
-    roles: [RoleEnum.SUPER],
+    roles: [RoleEnum.ADMIN],
     children: [
       {
         name: '分析页',
@@ -21,4 +21,4 @@ const supers: MenuItem[] = [
   },
 ]
 
-export default supers
+export default admin

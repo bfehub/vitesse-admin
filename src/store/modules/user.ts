@@ -3,44 +3,39 @@ import type { LoginParams } from '@/api/sys/model/userModel'
 import { defineStore } from 'pinia'
 import { store } from '@/store'
 import { router } from '@/router'
-import { RoleEnum } from '@/enums/roleEnum'
 import { PageEnum } from '@/enums/pageEnum'
-import { TOKEN_KEY, USER_INFO_KEY, USER_ROLE_KEY } from '@/enums/cacheEnum'
+import { TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum'
 import { getAuthCache, setAuthCache } from '@/utils/auth'
 import { loginApi, getUserInfo, doLogout } from '@/api/sys/user'
 
 interface UserState {
-  userInfo: Nullable<UserInfo>
   token: Nullable<string>
-  roleList: RoleEnum[]
+  userInfo: Nullable<UserInfo>
   sessionTimeout: boolean
-  lastUpdateTime: number
 }
 
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
-    userInfo: null,
     token: null,
-    roleList: [],
+    userInfo: null,
     sessionTimeout: false,
-    lastUpdateTime: 0,
   }),
   getters: {
-    getUserInfo(): UserInfo {
-      return this.userInfo || getAuthCache(USER_INFO_KEY) || {}
-    },
     getToken(): string {
       return this.token || getAuthCache(TOKEN_KEY)
     },
-    getRoleList(): RoleEnum[] {
-      return this.roleList.length > 0 ? this.roleList : getAuthCache(USER_ROLE_KEY)
+    getUserInfo(): UserInfo {
+      return this.userInfo || getAuthCache(USER_INFO_KEY) || {}
     },
     getSessionTimeout(): boolean {
       return !!this.sessionTimeout
     },
-    getLastUpdateTime(): number {
-      return this.lastUpdateTime
+    getRoles(): string[] {
+      return (this.getUserInfo.roles || []).map((role) => role.value)
+    },
+    getPermissions(): string[] {
+      return this.getUserInfo.permissions || []
     },
   },
   actions: {
@@ -48,13 +43,8 @@ export const useUserStore = defineStore({
       this.token = info || ''
       setAuthCache(TOKEN_KEY, info)
     },
-    setRoleList(roleList: RoleEnum[]) {
-      this.roleList = roleList
-      setAuthCache(USER_ROLE_KEY, roleList)
-    },
     setUserInfo(info: UserInfo | null) {
       this.userInfo = info
-      this.lastUpdateTime = new Date().getTime()
       setAuthCache(USER_INFO_KEY, info)
     },
     setSessionTimeout(flag: boolean) {
@@ -73,7 +63,6 @@ export const useUserStore = defineStore({
         // 2、获取到用户详细信息
         const userInfo = await getUserInfo()
         this.setUserInfo(userInfo)
-        this.setRoleList(userInfo.roles.map((item) => item.value) as RoleEnum[])
 
         // 3、登录成功后默认访问哪个页面
         router.replace(userInfo.homePath || PageEnum.BASE_HOME)
