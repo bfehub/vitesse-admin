@@ -14,8 +14,6 @@ import { router, setupRouter } from '@/router'
 import { setupRouterGuard } from '@/router/guard'
 import { setupErrorHandle } from '@/logics/error-handle'
 
-const a = 1
-
 async function bootstrap() {
   const app = createApp(App)
 
